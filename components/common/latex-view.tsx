@@ -24,7 +24,7 @@ Hello, \\textbf{World}!
 
 \\end{document}
   `)
-  const [cursorPosition, setCursorPosition] = useState(0)
+  const [, setCursorPosition] = useState(0)
   const textareaRef = useRef<HTMLTextAreaElement>(null)
 
   const handleInsertCommand = (command: string) => {
