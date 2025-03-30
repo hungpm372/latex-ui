@@ -128,7 +128,7 @@ export default function LatexEditor() {
     setCompilationStatus({ loading: true, error: null })
     try {
       const response = await axios.post(
-        'http://localhost:5000/api/compile-latex',
+        'http://23.99.124.159:5000/api/compile-latex',
         { content: latexSource },
         { responseType: 'blob' }
       )
