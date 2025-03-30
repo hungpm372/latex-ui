@@ -28,10 +28,10 @@ const PdfViewer = ({ pdfUrl }: { pdfUrl: string }) => {
             disabled={pageNumber <= 1}
             onClick={() => setPageNumber((prev) => Math.max(prev - 1, 1))}
           >
-            Previous
+            Trước
           </Button>
           <span className='flex items-center px-3 text-sm'>
-            Page {pageNumber} of {numPages}
+            Trang {pageNumber} / {numPages || 0}
           </span>
           <Button
             variant='ghost'
@@ -39,7 +39,7 @@ const PdfViewer = ({ pdfUrl }: { pdfUrl: string }) => {
             disabled={!!(numPages && pageNumber >= numPages)}
             onClick={() => setPageNumber((prev) => Math.min(prev + 1, numPages || prev + 1))}
           >
-            Next
+            Tiếp theo
           </Button>
         </div>
         <div className='flex items-center space-x-2'>
@@ -62,7 +62,7 @@ const PdfViewer = ({ pdfUrl }: { pdfUrl: string }) => {
           </Button>
         </div>
         <Button variant='ghost' size='sm' onClick={() => window.open(pdfUrl, '_blank')}>
-          Open in New Tab
+          Mở trong tab mới
         </Button>
       </div>
 

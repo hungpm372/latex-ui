@@ -14,6 +14,7 @@ interface LatexEditorProps {
 
 const VisualEditor: FC<LatexEditorProps> = ({ latexTemplate, autoCompile, setLatexSource }) => {
   const [formData, setFormData] = useState<FormData>({})
+  console.log('formData', formData)
 
   const handleInputChange = (key: string, value: string) => {
     setFormData((prev) => {
@@ -28,9 +29,39 @@ const VisualEditor: FC<LatexEditorProps> = ({ latexTemplate, autoCompile, setLat
 
   const generateLatexSource = (template: string, data: FormData): string => {
     let result = template
-    Object.keys(data).forEach((key) => {
-      result = result.replace(new RegExp(`\\\\hspace\\{[^}]+\\}`, 'g'), data[key])
-    })
+
+    // Find all \hspace occurrences
+    const regex = /\\hspace\{[^}]+\}/g
+    let match
+
+    // Create a mapping of placeholder positions to input keys
+    const placeholderToKey: Record<number, { placeholder: string; inputKey: string }> = {}
+    let i = 0
+
+    while ((match = regex.exec(template)) !== null) {
+      const placeholder = match[0]
+      const position = match.index
+      const inputKey = `input-${i}`
+      placeholderToKey[position] = { placeholder, inputKey }
+      i++
+    }
+
+    // Sort positions in descending order to avoid changing positions when replacing
+    const positions = Object.keys(placeholderToKey)
+      .map(Number)
+      .sort((a, b) => b - a)
+
+    // Replace placeholders from end to beginning to maintain positions
+    for (const position of positions) {
+      const { placeholder, inputKey } = placeholderToKey[position]
+      if (data[inputKey]) {
+        result =
+          result.substring(0, position) +
+          data[inputKey] +
+          result.substring(position + placeholder.length)
+      }
+    }
+
     return result
   }
 

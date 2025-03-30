@@ -35,7 +35,7 @@ export default function LatexEditor() {
                               \\vspace{8pt}
                               \\textbf{ĐƠN ĐỀ NGHỊ ĐƯỢC LÀM VIỆC CHÍNH THỨC} \\\\
                               \\vspace{8pt}
-                              \\textbf{Kính gửi:}\\hspace{3.5cm}\\textsuperscript{\\textit{(1)}}
+                              \\textbf{Kính gửi:} \\hspace{3.5cm}\\textsuperscript{\\textit{(1)}}
                           \\end{center}
 
                           \\noindent
@@ -100,7 +100,7 @@ export default function LatexEditor() {
                           \\renewcommand{\\arraystretch}{1.08}
                           \\begin{flushright}
                               \\begin{tabular}{c}
-                                  \\textit{\\hspace{1cm}, ngày \\hspace{0.5cm} tháng \\hspace{0.5cm} năm} \\\\
+                                  \\textit{\\hspace{1cm}, ngày \\hspace{0.5cm} tháng \\hspace{0.5cm} năm} \\hspace{0.5cm} \\\\
                                   \\textbf{NGƯỜI VIẾT ĐƠN} \\\\
                                   \\textit{(ký và ghi rõ họ tên)}
                               \\end{tabular}
