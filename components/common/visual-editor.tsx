@@ -434,7 +434,13 @@ const VisualEditor: FC<LatexEditorProps> = ({ latexTemplate, autoCompile, setLat
         rows.push(<tr key={`row-${index}`}>{rowCells}</tr>)
       })
 
-      return <tbody key={getKey()}>{rows}</tbody>
+      return isInsideTable ? (
+        <tbody key={getKey()}>{rows}</tbody>
+      ) : (
+        <table key={getKey()}>
+          <tbody>{rows}</tbody>
+        </table>
+      )
     }
 
     // Start parsing the document
